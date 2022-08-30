@@ -12,6 +12,8 @@ require "_nvim_tree"
 require "_bufferline"
 require "_null_ls"
 require "_lualine"
+require "_toggleterm"
+require "_alpha"
 
 vim.cmd "colorscheme onedarker"
 

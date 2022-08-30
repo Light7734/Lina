@@ -104,8 +104,12 @@ return packer.startup(function(use)
     -- Lualine
     use 'nvim-lualine/lualine.nvim'
 
+    -- Terminal
+    use "akinsho/toggleterm.nvim"
+
     -- Misc
     use "norcalli/nvim-colorizer.lua" -- Colorizer
+    use 'goolord/alpha-nvim' -- Greeter
 
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
