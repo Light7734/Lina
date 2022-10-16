@@ -1,0 +1,75 @@
+Modules and Module extensions
+
+////////////////////////////////////////////////////////////////
+// MODULE HANDLER
+Mojula {
+    Modules[] = { Core, EventSystem, Renderer, Editor, LuaScript, ECS }
+
+    Modules[] = 
+    {
+        { 
+            Name: "Logger",
+            InitPhase: "PreInit"
+        }
+    }
+}
+
+int main()
+{
+    try {
+        //////////////////////////////////////////////////////////////// [ #INIT# ]
+        // Load up all the modules and do the necessary initialization tasks before we reach the game-loop
+        {
+            // Load Logger and Profiler first (logging and profiling will be available to all modules)
+            Mojula.LoadModule(Mojula.Modules[Logger]);
+            Mojula.LoadModule(Mojula.Modules[Profiler]);
+
+            PROFILE_SCOPE("INIT");
+            /* PreInit: Base modules, eg. SystemInfo, FileReaders, CustomUserModule Etc */
+            LCC(Mojula.LoadModulesWithPhase(ModuleInitPhase::EPreInit));
+
+            /* PreSplash: Modules needed to render the splash screen, eg. Window, VulkanRendererContext, CustomUserModule  */
+            LCC(Mojula.LoadModulesWithPhase(ModuleInitPhase::EPreSlash));
+
+            /* BeginSplashScreen: Render the splash screen and a progress bar (can be customized for the packaged game to show game's splash screen instead of the editor) */
+            LCC(BeginSplashScreen());
+
+            /* Init (DuringSplashScreen): Rest of the modules, eg. VulkanRenderer, Networking, CustomUserModule */
+            LCC(Mojula.LoadModulesWithPhase(ModuleInitPhase::EPostSplash));
+            
+            /* PreEditor (DuringSplashScreen): Editor only modules, eg. ??? */
+            LCC(Mojula.LoadModulesWithPhase(ModuleInitPhase::EPreEditor));
+
+            /* InEditor (PostSplashScreen): Lazily-loaded editor only modules, loaded in a separate thread during editor, eg. ??? */
+            LCC(Mojula.LoadModulesWithPhase(ModuleInitPhase::EPostEditor));
+        }
+
+        //////////////////////////////////////////////////////////////// [ #LOOP# ]
+        // The main game loop
+        {
+            PROFILE_SCOPE("TICK");
+
+            /* TickSystems: (Entities, Components, "SYSTEMS"), eg. RenderingSystem, PhysicsSystems, CustomUserSystems */ 
+            Mojula.TickSystems();
+
+            /* TickEditor: eg. EditorPanels(eg. AssetManager, AnimSequencer), CustomUserStuff */
+            Mojulla.TickEditor();
+        }
+
+        //////////////////////////////////////////////////////////////// [ #DESTROY ]
+        // Gracefully destroy everything and exit
+        {
+            PROFILE_SCOPE("DESTROY");
+
+            Mojula.UnloadAllModules(); // Unloads modules in reverse order
+        }
+    }
+    catch(Exception exception)
+    {
+        // Log/show what went wrong
+
+        // Save the user progress if applicable
+
+        return exception.exitCode;
+    }
+}

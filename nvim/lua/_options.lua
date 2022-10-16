@@ -6,7 +6,7 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.ignorecase = true
 vim.opt.pumheight = 12
 vim.opt.showtabline = 2
-vim.opt.smartindent = true
+vim.opt.cmdheight = 0
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
@@ -23,6 +23,9 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
+vim.opt.showtabline = 0
+vim.opt.showtabline = 0
+
 vim.opt.cursorline = true
 vim.opt.numberwidth = 4
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")

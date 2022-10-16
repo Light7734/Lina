@@ -3,9 +3,8 @@ while true; do
     killall dwm -w
     killall dwmbar.sh -w
 
-    nitrogen --restore &
-
-    picom --experimental-backends -b --config="/home/light/.config/picom/picom.conf" &
+    feh --bg-fill ~/pictures/wallpapers/1.jpg
+    picom -b --config="/home/light/.config/picom/picom.confg"
 
     /home/light/dev/dwm/dwmbar.sh &
 

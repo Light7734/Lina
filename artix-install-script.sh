@@ -78,7 +78,8 @@ sudo pacman -S --needed\
     inkscape\
     tiled\
     lmms\
-    tuxguitar
+    tuxguitar\
+    kdenlive
 
 yay -S --needed\
     aseprite\
@@ -207,11 +208,3 @@ cd ${HOME}/dev/homepage
 rm package-lock.json
 sudo npm install -g gatsby-cli
 npm install
-
-git clone 'git@github.com:EpicGames/UnrealEngine.git' ue5 --single-branch --branch release
-yay -S libicu50
-sudo update-ca-trust --fresh
-sudo ln -s /etc/ssl /usr/lib/ssl
-cd ${HOME}/dev/ue5
-./Setup.sh ./GenerateProjectFiles.sh
-make

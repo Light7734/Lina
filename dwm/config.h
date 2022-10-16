@@ -30,7 +30,7 @@ static const char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = {"", "", "", "", "", "", "", "", ""};
+static const char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "="};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -100,6 +100,9 @@ static Key keys[] = {
     TAGKEYS(XK_7, 6),
     TAGKEYS(XK_8, 7),
     TAGKEYS(XK_9, 8),
+    TAGKEYS(XK_0, 9),
+    TAGKEYS(XK_minus, 10),
+    TAGKEYS(XK_equal, 11),
 
     // Masters & Layout
     {MODKEY, XK_Return, zoom, {0}},
@@ -117,21 +120,19 @@ static Key keys[] = {
 
     // Not installed apps
     {MODKEY | Mod1Mask, XK_a, spawn, SHCMD("/home/light/downloads/aseprite/aseprite")},
-    {MODKEY | Mod1Mask, XK_u, spawn, SHCMD("export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && " "/home/light/dev/UnrealEngine/Engine/Binaries/Linux/UnrealEditor")},
-    {MODKEY | Mod1Mask, XK_r, spawn, SHCMD("export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && " "bash /home/light/downloads/rider/bin/rider.sh")},
-    {MODKEY | Mod1Mask, XK_f, spawn, SHCMD("winedbg --command cont '/home/light/.wine/drive_c/Program Files/Image-Line/FL Studio 20/FL.exe'")},
+    {MODKEY | Mod1Mask, XK_u, spawn, SHCMD("export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && " "/home/light/dev/unreal-engine/Engine/Binaries/Linux/UnrealEditor")},
+    {MODKEY | Mod1Mask, XK_r, spawn, SHCMD("export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && " "rider")},
     
-
     // System changes
-    {MODKEY | ShiftMask, XK_r, quit, {0}}, // Restart dwm session
-    {MODKEY | ShiftMask, XK_q, spawn, SHCMD("sudo kill Xorg")}, // Restart dwm session
+    {MODKEY | ShiftMask, XK_q, quit, {0}}, // Restart dwm session
+    {MODKEY | ShiftMask, XK_l, spawn, SHCMD("pkill -KILL -u light")},  // Logout
+    {MODKEY | ShiftMask, XK_p, spawn, SHCMD("sudo poweroff")}, // Poweroff
+    {MODKEY | ShiftMask, XK_r, spawn, SHCMD("sudo reboot")},  // Reboot
 
     // Media keys
-    {0, XF86XK_AudioLowerVolume, spawn, SHCMD("amixer -q -D pulse sset Master on && amixer -q -D pulse sset Master 5%- && " "$HOME/dev/dwm/dwmbar_update.sh")},
-    {0, XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer -q -D pulse sset Master on && amixer -q -D pulse sset Master 5%+ && " "$HOME/dev/dwm/dwmbar_update.sh")},
+    {0, XF86XK_AudioLowerVolume, spawn, SHCMD("amixer -q -D pulse sset Master on && amixer -q -D pulse sset Master 2%- && " "$HOME/dev/dwm/dwmbar_update.sh")},
+    {0, XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer -q -D pulse sset Master on && amixer -q -D pulse sset Master 2%+ && " "$HOME/dev/dwm/dwmbar_update.sh")},
     {0, XF86XK_AudioMute, spawn, SHCMD("amixer -q -D pulse sset Master toggle && " "$HOME/dev/dwm/dwmbar_update.sh")},
-
-    // Functions 
 };
 
 /* button definitions */

@@ -47,7 +47,33 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
-keymap("n", "<leader>t", "<cmd>ToggleTerm<CR>", opts)
--- keymap("n", "<leader>t", "<cmd>Format<CR>", opts)
+keymap(
+	"n",
+	"<leader>tm",
+	"<cmd>lua require 'telescope.builtin'.lsp_document_symbols({ symbols = { 'method', 'function' } })<cr>",
+	opts
+)
+
+keymap(
+	"n",
+	"<leader>tf",
+	"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+	opts
+)
+keymap("n", "<leader>tg", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>w", "<cmd>w<cr>", opts)
+
+keymap(
+	"n",
+	"<A-]>",
+	[[<cmd>set so=999<cr> <cmd>/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<cr>jjj^0 <cmd>nohl<cr> <cmd>set so=6<cr>]],
+	opts
+)
+
+keymap(
+	"n",
+	"<A-[>",
+	[[<cmd>set so=999<cr> <cmd>?\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<cr>nnjjj^0 <cmd>nohl<cr> <cmd>set so=6<cr>]],
+	opts
+)
