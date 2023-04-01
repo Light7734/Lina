@@ -66,28 +66,49 @@ local function lsp_keymaps(bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({border="rounded"})<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({border="rounded"})<CR>', opts)
 
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lr", '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>td","<cmd>lua require 'telescope.builtin'.diagnostics()<cr>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>tr", "<cmd>lua require 'telescope.builtin'.lsp_references()<CR>", opts)
+	vim.api.nvim_buf_set_keymap(
+		bufnr,
+		"n",
+		"<leader>td",
+		"<cmd>lua require 'telescope.builtin'.diagnostics()<cr>",
+		opts
+	)
+	vim.api.nvim_buf_set_keymap(
+		bufnr,
+		"n",
+		"<leader>tr",
+		"<cmd>lua require 'telescope.builtin'.lsp_references()<CR>",
+		opts
+	)
 end
-
-M.on_attach = function(client, bufnr)
-	-- client.resolved_capabilities.document_formatting = false
-
-	lsp_keymaps(bufnr)
-	lsp_highlight_document(client)
-end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
 	return
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+capabilities.offsetEncoding = { "utf-16" }
+
+M.on_attach = function(client, bufnr)
+	--[[ client.resolved_capabilities.document_formatting = false ]]
+	vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+		group = augroup,
+		buffer = bufnr,
+		callback = function()
+			local util = require("vim.lsp.util")
+			local params = util.make_formatting_params({})
+			pcall(client.request, "textDocument/formatting", params, nil, bufnr)
+		end,
+	})
+
+	lsp_keymaps(bufnr)
+	lsp_highlight_document(client)
+end
 
 return M

@@ -7,6 +7,32 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+ZenActive = true
+
+local function toggle_zen()
+	if not ZenActive then
+		ZenActive = true
+
+		vim.cmd("set showtabline=0")
+		vim.cmd("set nonumber")
+		vim.cmd("set norelativenumber")
+
+		require("lsp-inlayhints").toggle()
+	else
+		ZenActive = false
+
+		vim.cmd("set showtabline=2")
+		vim.cmd("set relativenumber")
+		vim.cmd("set number")
+
+		require("lsp-inlayhints").toggle()
+	end
+end
+
+vim.api.nvim_create_user_command("ToggleZen", toggle_zen, {})
+
+keymap("n", "<C-q>", "<cmd>ToggleZen<cr>", opts)
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -19,8 +45,6 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
-
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
@@ -62,6 +86,7 @@ keymap(
 )
 keymap("n", "<leader>tg", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>nvt", "<cmd>NvimTreeFindFile<cr>", opts)
 keymap("n", "<leader>w", "<cmd>w<cr>", opts)
 
 keymap(
@@ -77,3 +102,46 @@ keymap(
 	[[<cmd>set so=999<cr> <cmd>?\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<cr>nnjjj^0 <cmd>nohl<cr> <cmd>set so=6<cr>]],
 	opts
 )
+
+vim.g.font_size = 10
+vim.o.guifont = "JetbrainsMono Nerd Font:h" .. vim.g.font_size
+
+keymap("n", "<C-e>", "5<C-e>", opts)
+
+vim.keymap.set(
+	"n",
+	"<C-_>",
+	[[<cmd>lua vim.g.font_size = vim.g.font_size - 1<CR><cmd>lua vim.o.guifont='JetbrainsMono Nerd Font:h'..vim.g.font_size<CR>]]
+)
+
+vim.keymap.set(
+	"n",
+	"<C-+>",
+	[[<cmd>lua vim.g.font_size = vim.g.font_size + 1<CR><cmd>lua vim.o.guifont='JetbrainsMono Nerd Font:h'..vim.g.font_size<CR>]]
+)
+--[[ keymap( ]]
+--[[ 	"n", ]]
+--[[ 	"<C-->", ]]
+--[[ 	":luado vim.g.font_size = vim.g.font_size - 1; vim.o.guifont='Consolas:h'..vim.g.font_size<CR>", ]]
+--[[ 	opts ]]
+--[[ ) ]]
+--[[ keymap( ]]
+--[[ 	"n", ]]
+--[[ 	"<C-+>", ]]
+--[[ 	":luado vim.g.font_size = vim.g.font_size + 1; vim.o.guifont='Consolas:h'..vim.g.font_size<CR>", ]]
+--[[ 	opts ]]
+--[[ ) ]]
+keymap("n", "\\", "<cmd>ToggleTerm<cr>", opts)
+--[[ 	"<C-+>", ]]
+--[[ 	":luado vim.g.font_size = vim.g.font_size + 1; vim.o.guifont='Consolas:h'..vim.g.font_size<CR>", ]]
+--[[ 	opts ]]
+--[[ ) ]]
+keymap("n", "\\", "<cmd>ToggleTerm<cr>", opts)
+--[[ ) ]]
+keymap("n", "\\", "<cmd>ToggleTerm<cr>", opts)
+--[[ 	":luado vim.g.font_size = vim.g.font_size + 1; vim.o.guifont='Consolas:h'..vim.g.font_size<CR>", ]]
+--[[ 	opts ]]
+--[[ ) ]]
+keymap("n", "\\", "<cmd>ToggleTerm<cr>", opts)
+--[[ ) ]]
+keymap("n", "\\", "<cmd>ToggleTerm<cr>", opts)

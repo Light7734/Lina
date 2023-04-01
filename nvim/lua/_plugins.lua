@@ -60,8 +60,9 @@ return packer.startup(function(use)
 	use("saadparwaiz1/cmp_luasnip")
 
 	-- LSP
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
 	use("neovim/nvim-lspconfig")
-	use("williamboman/nvim-lsp-installer")
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 
 	-- Snippets
@@ -74,6 +75,9 @@ return packer.startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use("BurntSushi/ripgrep")
+    use("slarwise/telescope-args.nvim")
+
+    use("windwp/nvim-autopairs")
 
 	-- Treesitter
 	use({
@@ -95,11 +99,13 @@ return packer.startup(function(use)
 	use("kyazdani42/nvim-tree.lua")
 
 	-- Bufferline
-	-- use("akinsho/bufferline.nvim")
+	use("akinsho/bufferline.nvim")
 	use("moll/vim-bbye")
 
 	-- Lualine
 	use("nvim-lualine/lualine.nvim")
+
+	use("ggandor/leap.nvim")
 
 	-- Terminal
 	use("akinsho/toggleterm.nvim")
@@ -116,16 +122,21 @@ return packer.startup(function(use)
 		end,
 		ft = { "markdown" },
 	})
+
+	use("LunarVim/onedarker.nvim")
 	use("navarasu/onedark.nvim")
 	use("ray-x/lsp_signature.nvim")
 	use("ethanholz/nvim-lastplace")
 	use("xiyaowong/nvim-transparent")
-
 	use("ellisonleao/gruvbox.nvim")
+
 	use("dracula/vim")
 
 	use("lukas-reineke/indent-blankline.nvim")
+	use("simrat39/rust-tools.nvim")
+	use("lvimuser/lsp-inlayhints.nvim")
 
+	-- Packer
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()

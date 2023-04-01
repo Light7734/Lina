@@ -14,6 +14,7 @@ nvim_tree.setup({
 	renderer = {
 		root_folder_modifier = ":t",
 		icons = {
+            enable = false,
 			glyphs = {
 				default = "",
 				symlink = "",
@@ -40,7 +41,7 @@ nvim_tree.setup({
 		},
 	},
 	diagnostics = {
-		enable = true,
+		enable = false,
 		show_on_dirs = true,
 		icons = {
 			hint = "",
@@ -50,7 +51,7 @@ nvim_tree.setup({
 		},
 	},
 	view = {
-		width = 30,
+		width = 42,
 		-- height = 30,
 		side = "right",
 		mappings = {

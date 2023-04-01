@@ -1,5 +1,6 @@
 local cmp =  require'cmp'
 
+
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
   return
@@ -127,3 +128,7 @@ cmp.setup {
     native_menu = false,
   },
 }
+
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

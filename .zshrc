@@ -10,7 +10,7 @@ PROMPT="%F{green}%n@%m%f %~ $ "    # The prompt
 
 ################################################################
 ## EXPORTS
-export PATH="${PATH}:/home/light/.local/bin"
+export PATH="${PATH}:/home/light/.local/bin:/home/light/scripts/"
 export LC_ALL="C"
 
 ################################################################
@@ -18,8 +18,10 @@ export LC_ALL="C"
 alias icat='kitty +kitten icat'
 alias zsrc='source ~/.zshrc'
 
-alias v='nvim'
-alias vv='neovide --multigrid --noidle'
+alias v='~/downloads/nvim/nvim-linux64/bin/nvim'
+alias vv='neovide --multigrid --noidle --neovim-bin ~/downloads/nvim/nvim-linux64/bin/nvim'
+
+alias vpn='expressvpn'
 
 alias q='exit'
 alias :q='exit'
@@ -27,13 +29,12 @@ alias :wq='exit'
 alias :qa='exit'
 
 alias wacom='xsetwacom --set 9 Area 15200 8550 0 0'
-alias picom='picom -b --config="/home/light/.config/picom/picom.confg"'
 
 alias bitch='sudo'
 alias please='sudo'
 alias communistify='chmod +777'
 
-alias bg='cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
+alias bg='cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=DEBUG'
 alias b='cmake --build build -j`nproc`'
 alias b1='cmake --build build'
 
@@ -56,6 +57,25 @@ alias ...='c ../../'
 alias ....='c ../../../'
 alias .....='c ../../../../'
 alias ......='c ../../../../../'
+
+alias randwall='feh --bg-fill --randomize ~/pictures/wallpapers/'
+alias setwall='feh --bg-fill '
+
+alias mpv='mpv --input-ipc-server='/tmp/mpvsocket''
+
+alias poweroff='sudo -v ; mpv --no-terminal ~/.config/xmonad/poweroff.wav ; sudo poweroff'
+
+pomodoro_work()
+{
+    sleep 1h
+    mpv ~/dev/dwm/pomodoro-rest.wav --loop --volume=120
+}
+
+pomodoro_rest()
+{
+    sleep 10m
+    mpv ~/dev/dwm/pomodoro-rest.wav --loop --volume=120
+}
 
 c() # (cd) && clear && list
 {
@@ -107,9 +127,14 @@ cgs() # (cd) && clear && git status
 
 picomadd() # add exception to opacity
 {
-    sed -i '/# OPACITY_RULE/i ,"100:name *= '\'$1\''"' ~/.config/picom/picom.confg
+    sed -i '/# OPACITY_RULE/i ,"100:name *= '\'$1\''"' ~/.config/picom/picom.conf
 }
 
 eval $(thefuck --alias)
 
-cn
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+fortune | cowsay  | lolcat

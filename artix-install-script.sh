@@ -118,10 +118,6 @@ sudo pacman -S --needed\
     lz4\
     zstd\
     neovim
-LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
-
-yay -S --needed\
-    rider
 
 aria2c 'https://sdk.lunarg.com/sdk/download/latest/linux/vulkan-sdk.tar.gz'
 
@@ -175,9 +171,6 @@ sudo make install
 
 ################################################################################################
 ### REPOSITORIES
-cd ${HOME}/dev
-git clone --recurse-submodules 'git@github.com:Light7734/cses' cses
-
 git clone --recurse-submodules 'git@github.com:Light7734/light' light
 cd ${HOME}/dev/light
 mkdir build
@@ -187,16 +180,16 @@ cd ../../build
 cmake .. -DEXPORT_COMPILE_COMMANDS=1
 cmake --build . -j20
 
-git clone --recurse-submodules 'git@github.com:Light7734/raytracer' raytracer
-cd ${HOME}/dev/raytracer
+git clone --recurse-submodules 'git@github.com:Light7734/hikari' hikari
+cd ${HOME}/dev/hikari
 mkdir build
 cd build
 cmake ..
 cmake .. -DEXPORT_COMPILE_COMMANDS=1
 cmake --build . -j20
 
-git clone --recurse-submodules 'git@github.com:Light7734/vulkan-renderer' vulkan-renderer
-cd ${HOME}/dev/vulkan-renderer
+git clone --recurse-submodules 'git@github.com:Light7734/bindlessvk' bindlessvk
+cd ${HOME}/dev/hikari
 mkdir build
 cd build
 cmake ..
