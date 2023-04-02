@@ -60,6 +60,10 @@ vim.notify = function(msg, ...)
 	notify(msg, ...)
 end
 
+
+
+
+
 --[[ local ok, lsp_inlayhints = pcall(require, "lsp-inlayhints") ]]
 --[[ if ok then ]]
 --[[     lsp_inlayhints.setup() ]]

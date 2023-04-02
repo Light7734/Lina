@@ -37,6 +37,7 @@ my_startup_hook = do
                 spawnOnce "/home/light/.config/xmonad/toggle_picom.sh"
                 spawnOnce "/home/light/.config/xmonad/toggle_polybar.sh"
                 spawnOnce "feh --bg-fill --randomize ~/pictures/wallpapers"
+                spawnOnce "setxkbmap -model pc104 -layout us,ir -variant , -option grp:rwin_toggle"
                 spawnOnce "mpv --no-video --no-terminal ~/.config/xmonad/welcome.wav"
 
 main :: IO ()

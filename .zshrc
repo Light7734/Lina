@@ -19,7 +19,7 @@ alias icat='kitty +kitten icat'
 alias zsrc='source ~/.zshrc'
 
 alias v='~/downloads/nvim/nvim-linux64/bin/nvim'
-alias vv='neovide --multigrid --noidle --neovim-bin ~/downloads/nvim/nvim-linux64/bin/nvim'
+alias vv='neovide --multigrid --noidle --neovim-bin ~/downloads/nvim/nvim-linux64/bin/nvim && exit'
 
 alias vpn='expressvpn'
 
@@ -59,7 +59,7 @@ alias .....='c ../../../../'
 alias ......='c ../../../../../'
 
 alias randwall='feh --bg-fill --randomize ~/pictures/wallpapers/'
-alias setwall='feh --bg-fill '
+alias setwall='feh --bg-fill'
 
 alias mpv='mpv --input-ipc-server='/tmp/mpvsocket''
 
