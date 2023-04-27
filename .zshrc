@@ -68,73 +68,48 @@ alias poweroff='sudo -v ; mpv --no-terminal ~/.config/xmonad/poweroff.wav ; sudo
 pomodoro_work()
 {
     sleep 1h
-    mpv ~/dev/dwm/pomodoro-rest.wav --loop --volume=120
+    mpv ~/.config/xmonad/beep.mp3 --loop --volume=120
 }
 
 pomodoro_rest()
 {
     sleep 10m
-    mpv ~/dev/dwm/pomodoro-rest.wav --loop --volume=120
+    mpv ~/.config/xmonad/beep.mp3 --loop --volume=120
 }
 
-c() # (cd) && clear && list
+c()
 {
-    if [[ $# -ne 0 ]] ; then
-        cd $1
-    fi
-    clear && l
+    cd ${1:-.} ; clear ; l
 }
 
-ca() # (cd) && clear && list all
+ca()
 {
-    if [[ $# -ne 0 ]] ; then
-        cd $1
-    fi
-    clear && la
+    cd ${1:-.} ; clear ; la
 }
 
-cs() # (cd) && clear && list(simple)
+cs()
 {
-    if [[ $# -ne 0 ]] ; then
-        cd $1
-    fi
-    clear && ls
+    cd  ${1:-.} ; clear ; ls
 }
 
-csa() # (cd) && clear && list(simple) all
+csa()
 {
-    if [[ $# -ne 0 ]] ; then
-        cd $1
-    fi
-    clear && lsa
+    cd ${1:-.} ; clear ; lsa
 }
 
-cn() # (cd) && clear && neofetch
+cn()
 {
-    if [[ $# -ne 0 ]] ; then
-        cd $1
-    fi
-    clear && neofetch
+    cd ${1:-.} ; clear ; neofetch
 }
 
-cgs() # (cd) && clear && git status
+cgs()
 {
-    if [[ $# -ne 0 ]] ; then
-        cd $1
-    fi
-    clear && git status
+    cd ${1:-.} ; clear ; git status
 }
 
 picomadd() # add exception to opacity
 {
     sed -i '/# OPACITY_RULE/i ,"100:name *= '\'$1\''"' ~/.config/picom/picom.conf
 }
-
-eval $(thefuck --alias)
-
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 fortune | cowsay  | lolcat

@@ -50,8 +50,8 @@ my_conf
     , startupHook = my_startup_hook
     , manageHook = manageDocks <+> manageSpawn <+> manageHook def
     , logHook = workspaceHistoryHook <+> polybar_hook
-    , focusedBorderColor = "#BD93F9"
-    , normalBorderColor  = "#6272A4"
+    , focusedBorderColor = "#6272A4"
+    , normalBorderColor  = "#282a36"
     , workspaces = ["1\59285", "2\59285", "3\61948", "4\62057", "5\57879", "6\61441", "7\59285", "8\59285", "9\59138"]
     }
     `additionalKeysP`
