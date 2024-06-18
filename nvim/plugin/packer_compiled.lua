@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/light/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/light/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/light/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/light/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/light/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/light/.cache/nvim/packer_hererocks/2.1.1716656478/share/lua/5.1/?.lua;/home/light/.cache/nvim/packer_hererocks/2.1.1716656478/share/lua/5.1/?/init.lua;/home/light/.cache/nvim/packer_hererocks/2.1.1716656478/lib/luarocks/rocks-5.1/?.lua;/home/light/.cache/nvim/packer_hererocks/2.1.1716656478/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/light/.cache/nvim/packer_hererocks/2.1.1716656478/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/home/light/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
+  ["ccls.nvim"] = {
+    loaded = true,
+    path = "/home/light/.local/share/nvim/site/pack/packer/start/ccls.nvim",
+    url = "https://github.com/ranjithshegde/ccls.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/light/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -124,11 +129,6 @@ _G.packer_plugins = {
     path = "/home/light/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["friendly-snippets"] = {
-    loaded = true,
-    path = "/home/light/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-    url = "https://github.com/rafamadriz/friendly-snippets"
-  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/light/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -153,6 +153,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/light/.local/share/nvim/site/pack/packer/start/lsp-inlayhints.nvim",
     url = "https://github.com/lvimuser/lsp-inlayhints.nvim"
+  },
+  ["lsp-zero.nvim"] = {
+    loaded = true,
+    path = "/home/light/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
+    url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
   ["lsp_signature.nvim"] = {
     loaded = true,
@@ -185,11 +190,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/light/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
     url = "https://github.com/EdenEast/nightfox.nvim"
-  },
-  ["null-ls.nvim"] = {
-    loaded = true,
-    path = "/home/light/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
-    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -275,6 +275,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/light/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  ["refactoring.nvim"] = {
+    loaded = true,
+    path = "/home/light/.local/share/nvim/site/pack/packer/start/refactoring.nvim",
+    url = "https://github.com/ThePrimeagen/refactoring.nvim"
   },
   ripgrep = {
     loaded = true,

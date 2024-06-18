@@ -51,23 +51,37 @@ return packer.startup(function(use)
 	-- use("xiyaowong/nvim-transparent")
 	--
 	-- Autocomplete
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("saadparwaiz1/cmp_luasnip")
 
-	-- LSP
-	use("williamboman/mason.nvim")
-	use("williamboman/mason-lspconfig.nvim")
-	use("neovim/nvim-lspconfig")
-	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+    use { "ranjithshegde/ccls.nvim" }
 
-	-- Snippets
-	use("L3MON4D3/LuaSnip") --snippet engine
-	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+	-- LSP
+	use({
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v2.x",
+		requires = {
+			-- LSP Support
+			{ "neovim/nvim-lspconfig" }, -- Required
+			{ -- Optional
+				"williamboman/mason.nvim",
+				run = function()
+					pcall(vim.api.nvim_command, "MasonUpdate")
+				end,
+			},
+			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
+
+			-- Autocompletion
+			{ "hrsh7th/nvim-cmp" }, -- Required
+			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
+			{ "L3MON4D3/LuaSnip" }, -- Required
+		},
+	})
+
+	use("ThePrimeagen/refactoring.nvim")
 
 	-- Telescope
 	use({
@@ -75,9 +89,9 @@ return packer.startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use("BurntSushi/ripgrep")
-    use("slarwise/telescope-args.nvim")
+	use("slarwise/telescope-args.nvim")
 
-    use("windwp/nvim-autopairs")
+	use("windwp/nvim-autopairs")
 
 	-- Treesitter
 	use({
@@ -142,3 +156,4 @@ return packer.startup(function(use)
 		require("packer").sync()
 	end
 end)
+

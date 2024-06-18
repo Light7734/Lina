@@ -14,27 +14,27 @@ local diff = {
     colored = false,
     symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
 }
+
 local location = {
     "location",
     padding = 0,
 }
 
 local colors = {
-    blue = "#61afef",
-    green = "#98c379",
-    purple = "#c678dd",
-    cyan = "#56b6c2",
-    red1 = "#e06c75",
-    red2 = "#be5046",
-    yellow = "#e5c07b",
-    fg = "#abb2bf",
-    bg = "#282c34",
-    gray1 = "#828997",
-    gray2 = "#2c323c",
-    gray3 = "#3e4452",
+    blue = "#458588",
+    green = "#98971a",
+    purple = "#b16286",
+    cyan = "#83a598",
+    red1 = "#cc241d",
+    yellow = "#d79921",
+    fg = "#ebdbb2",
+    bg = "#282828",
+    gray1 = "#928374",
+    gray2 = "#7c6f64",
+    gray3 = "#665c54",
 }
 
-local onedarktheme = {
+local gruvbox = {
     normal = {
         a = { fg = colors.bg, bg = colors.blue, gui = "bold" },
         c = { fg = colors.bg, bg = colors.blue, gui = "bold" },
@@ -75,7 +75,7 @@ local onedarktheme = {
 lualine.setup({
     options = {
         icons_enabled = true,
-        theme = onedarktheme,
+        theme = gruvbox,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = { "dashboard", "NvimTree", "Outline" },
@@ -83,11 +83,11 @@ lualine.setup({
     },
     sections = {
         lualine_a = { "filename" },
-        lualine_b = {},
+        lualine_b = { { "diagnostics", colored = false }},
         lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = { branch, diff },
+        lualine_x = {branch, diff},
+        lualine_y = { },
+        lualine_z = {  },
     },
     inactive_sections = {
         lualine_a = { "filename" },

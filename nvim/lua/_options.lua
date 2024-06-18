@@ -1,9 +1,10 @@
 vim.opt.clipboard = "unnamedplus"
-vim.opt.completeopt = { "menu", "menuone", "preview" }
+-- vim.opt.completeopt = { "menu", "menuone", "preview" }
+vim.opt.completeopt = "menuone,noselect"
 vim.opt.fileencoding = "utf-32"
 vim.opt.ignorecase = true
 vim.opt.pumheight = 12
-vim.opt.cmdheight = 0
+-- vim.opt.cmdheight = 0
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
@@ -32,7 +33,7 @@ vim.opt.shortmess:append("c")
 
 vim.opt.laststatus = 1
 
-vim.cmd("colorscheme dracula")
+-- vim.cmd("colorscheme dracula")
 
 vim.cmd('let g:neovide_cursor_vfx_mode = "pixiedust"')
-vim.cmd("let g:neovide_cursor_vfx_particle_density = 18.0")
+vim.cmd("let g:neovide_cursor_vfx_particle_density = 32.0")

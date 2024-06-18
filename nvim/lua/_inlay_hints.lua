@@ -1,6 +1,6 @@
 require("lsp-inlayhints").setup({
 	highlight = DraculaRed,
-	enabled_at_startup = false,
+	enabled_at_startup = true,
 })
 
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
---[[]]
+
 --[[ local status_ok, ih = pcall(require, "inlay-hints") ]]
 --[[ if not status_ok then ]]
 --[[ 	return ]]

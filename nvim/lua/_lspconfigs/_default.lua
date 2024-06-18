@@ -97,16 +97,16 @@ capabilities.offsetEncoding = { "utf-16" }
 
 M.on_attach = function(client, bufnr)
 	--[[ client.resolved_capabilities.document_formatting = false ]]
-	vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-		group = augroup,
-		buffer = bufnr,
-		callback = function()
-			local util = require("vim.lsp.util")
-			local params = util.make_formatting_params({})
-			pcall(client.request, "textDocument/formatting", params, nil, bufnr)
-		end,
-	})
-
+	--[[ vim.api.nvim_create_autocmd({ "BufWritePre" }, { ]]
+	--[[ 	group = augroup, ]]
+	--[[ 	buffer = bufnr, ]]
+	--[[ 	callback = function() ]]
+	--[[ 		local util = require("vim.lsp.util") ]]
+	--[[ 		local params = util.make_formatting_params({}) ]]
+	--[[ 		pcall(client.request, "textDocument/formatting", params, nil, bufnr) ]]
+	--[[ 	end, ]]
+	--[[ }) ]]
+	--[[]]
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
 end

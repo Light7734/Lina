@@ -12,7 +12,7 @@ My linux config files :)
 * Window manager: XMonad
 * Display manager: LightDM
 * Wallpaper manager: feh
-* Bar: Polybar
+* Bar: No bars
 * Compositor: Picom
 * Browser: Librewolf
 * Editor: Neovide

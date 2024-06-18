@@ -1,13 +1,13 @@
 local function try_require(name)
-	local status_ok, val = pcall(require, name)
+    local status_ok, val = pcall(require, name)
 
-	if not status_ok then
-		print("try require failed - ", name)
-		print(val)
-		return nil
-	end
+    if not status_ok then
+        print("try require failed - ", name)
+        print(val)
+        return nil
+    end
 
-	return val
+    return val
 end
 
 local mason = try_require("mason")
@@ -17,59 +17,88 @@ local default_config = try_require("_lspconfigs._default")
 
 local status_ok = mason and mason_lspconfig and lspconfig and default_config
 
-if not status_ok then
-	return
+if not status_ok or not mason or not lspconfig or not mason_lspconfig then
+    return
 end
 
 mason.setup()
 mason_lspconfig.setup({
-	ensure_installed = { "clangd" },
 })
 
 lspconfig["clangd"].setup({
-	on_attach = default_config.on_attach,
-	capabilities = default_config.capabilities,
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
 })
 
 lspconfig["tsserver"].setup({
-	on_attach = default_config.on_attach,
-	capabilities = default_config.capabilities,
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
 })
 
 lspconfig["eslint"].setup({
-	on_attach = default_config.on_attach,
-	capabilities = default_config.capabilities,
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
 })
 
 lspconfig["cssls"].setup({
-	on_attach = default_config.on_attach,
-	capabilities = default_config.capabilities,
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
 })
 
 lspconfig["emmet_ls"].setup({
-	on_attach = default_config.on_attach,
-	capabilities = default_config.capabilities,
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
 })
 
 lspconfig["stylelint_lsp"].setup({
-	on_attach = default_config.on_attach,
-	capabilities = default_config.capabilities,
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
 })
 
 lspconfig["tailwindcss"].setup({
-	on_attach = default_config.on_attach,
-	capabilities = default_config.capabilities,
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
 })
 
+--[[ lspconfig["jedi-language-server"].setup({ ]]
+--[[ 	on_attach = default_config.on_attach, ]]
+--[[ 	capabilities = default_config.capabilities, ]]
+--[[ }) ]]
+
 lspconfig["pylsp"].setup({
-	on_attach = default_config.on_attach,
-	capabilities = default_config.capabilities,
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
 })
 
 lspconfig["hls"].setup({
-	on_attach = default_config.on_attach,
-	capabilities = default_config.capabilities,
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
 })
 
+lspconfig["pyright"].setup({
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
+})
+
+lspconfig["lua_ls"].setup({
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
+})
+
+--[[ lspconfig["prettier"].setup({ ]]
+--[[ 	on_attach = default_config.on_attach, ]]
+--[[ 	capabilities = default_config.capabilities, ]]
+--[[ }) ]]
+
+
+lspconfig["cmake"].setup({
+    on_attach = default_config.on_attach,
+    capabilities = default_config.capabilities,
+})
+
+--[[ lspconfig["cmakelang"].setup({ ]]
+--[[     on_attach = default_config.on_attach, ]]
+--[[     capabilities = default_config.capabilities, ]]
+--[[ }) ]]
 
 default_config.setup()
